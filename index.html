@@ -2,66 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalabel=yes, initial-scale=1.0, maximun-scale=3.0, minimum-scale=1.0">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-    <title>Portal Castilla La Mancha</title>
+    <title>Login Castilla La Mancha</title>
     <link rel="stylesheet" href="css/estilos.css">
-    <link rel="icon" type="image/png" href="/img/Escudo.png" />
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
+     <link rel="icon"  href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Escudo_de_la_Junta_de_Comunidades_de_Castilla-La_Mancha.svg/250px-Escudo_de_la_Junta_de_Comunidades_de_Castilla-La_Mancha.svg.png">
 </head>
 <body>
-    <form class="cabecera">
-      
-       <div class="encabezado">
-             <table>
-                <tr>
-                <td>
-                <img class="logo" src="/img/Escudo.png" style="width: 45px;height:60px;">
-                </td>
-                <td>
-                 <h1>Empadronamiento de Castilla La Mancha</h1>
-                </td>
-                </tr>
-            </table> 
-       </div>
-    </form>
-    
-    <form class="formulario">
-        <h1>Inicia Sesión</h1>
-        <div class="contenedor">       
-             <div class="input-contenedor">
-                 <i class="fas fa-envelope icon"></i>
-                 <input type="text" placeholder="Correo Electronico">
-             </div>
-
-             <div class="input-contenedor">
-                 <i class="fas fa-key icon"></i>
-                 <input type="password" placeholder="Contraseña">
-             </div> 
-
-             <input type="submit" value="Iniciar Sesion" class="button">
-             <p>Ya tienes cuenta? <a class="link" href="">Registrate</a></p>
+   <header class="enca">
+      <div class="wrapper">
+           <div class="logo">
+                Castilla La Mancha
+            </div>
+      </div>  
+      <nav>
+          <a href="">Inicio</a>
+          <a href="">Contacto</a>
+      </nav>
+   </header>
+    <div class="contenedor-form">
+        <div class="toggle">
+            <span> Crear Cuenta</span>
         </div>
-           <div class="contenedor-registro">
-            <div class="input-contenedor">
-                <i class="fas fa-user-circle icon"></i>
-                 <input type="text" placeholder="Usuario">
-             </div>
-
-             <div class="input-contenedor">
-                 <i class="fas fa-key icon"></i>
-                 <input type="password" placeholder="Contraseña">
-             </div> 
-
-             <div class="input-contenedor">
-                 <i class="fas fa-envelope icon"></i>
-                 <input type="text" placeholder="Correo Electronico">
-             </div>
-
-             <input type="submit" value="Registrarse" class="button">
+        
+        <div class="formulario">          
+            <h2>Iniciar Sesión</h2>
+            <form action="#">
+                <input type="text" placeholder="Usuario" required>
+                <input type="password" placeholder="Contraseña" required>
+                <input type="submit" value="Iniciar Sesión">
+            </form>
         </div>
-    </form>
-    
-    <script src="main.js"></script>
-    <script src="jquery-3.1.1.min.js"></script>
+        
+        <div class="formulario">
+            <h2>Crea tu Cuenta</h2>
+            <form action="#">
+                <input type="text" placeholder="Usuario" required>
+                
+                <input type="email" placeholder="Correo Electronico" required>
+                
+                <input type="password" placeholder="Contraseña" required>
+                
+                <input type="password" placeholder="Repita Contraseña" required>
+                
+                <input type="submit" value="Registrarse">
+            </form>
+        </div>
+        <div class="reset-password">
+            <a href="#">Olvide mi Contraseña?</a>
+        </div>
+    </div>
+    <script src="js/jquery-3.1.1.min.js"></script>    
+    <script src="js/main.js"></script>
 </body>
 </html>

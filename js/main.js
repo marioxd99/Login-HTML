@@ -1,8 +1,8 @@
-$('.toogle').click(function(){
+$('.toggle').click(function(){
     $('.formulario').animate({
-        heigth:"toogle",
-        'padding-top': 'toogle',
-        'padding-bottom': 'toogle',
-        opacity:'toogle'
-    },"slow")
+        height: "toggle",
+        'padding-top': 'toggle',
+        'padding-bottom': 'toggle',
+        opacity: 'toggle'
+    }, "slow");
 });
