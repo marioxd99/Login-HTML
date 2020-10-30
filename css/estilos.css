@@ -6,13 +6,30 @@
     box-sizing: border-box;
 }
 
+
 body {
     background: url(../img/molinos.jpg);
     background-size: cover;
     background-attachment: fixed;
     font-family: Roboto;
+    margin-bottom: 250px;
 }
 
+.bad {
+	text-align: center;
+	width: 100%;
+    margin-bottom: 300px;
+	padding: 12px;
+	background-color: #a22;
+	color: #fff
+}
+
+.ok{
+    text-align: center;
+    width: 100%;
+    background-color:forestgreen;
+    padding: 12px;    
+}
 .enca{
     background: rgba(123,98,0,0.5);
     overflow: hidden;
@@ -22,9 +39,6 @@ body {
     left: 0;
     z-index: 100;
     position: fixed;
-}
-.icon{
-
 }
 
 .wrapped{
@@ -61,8 +75,8 @@ nav a{
 }
 
 nav a:hover{
-    color:#33cccc;
-    border-bottom: 5px solid #33cccc;
+    color:#0075d9;
+    border-bottom: 5px solid #0075d9;
 }
 @media only screen and (mind-width:400px) and (max-width:767px){
     .enca{
@@ -82,22 +96,21 @@ nav a:hover{
 
 .contenedor-form {
     background: rgba(0,0,0,.7);
-    max-width: 500px;
+    max-width: 550px;
     width: 100%;
     margin: 150px auto;
-    border-radius: 5px;
+    border-radius: 6px;
     color: #fff;
     position: relative;
-    /*padding: 40px;*/
 }
 
 .contenedor-form .toggle {
     position: absolute;
-    top: 7px;
+    top: 10px;
     right: 7px;
-    width: 100px;
+    width: 115px;
     height: 30px;
-    font-size: 12px;
+    font-size: 18px;
     line-height: 25px;
     text-align: center;
     border-top: 2px solid #ff851b;
@@ -117,7 +130,7 @@ nav a:hover{
 
 .contenedor-form h2 {
     margin: 0 0 28px 0;
-    font-size: 20px;
+    font-size: 30px;
     font-weight: 400;
     line-height: 1;
 }
@@ -183,8 +196,19 @@ nav a:hover{
 .contenedor-form .formulario {
     display: none;
     padding: 40px;
+
 }
 
 .contenedor-form .formulario:nth-child(2) {
     display: block;
+}
+
+.mensaje{
+	width: 100%;
+	max-width: 350px;
+	margin: auto;
+	margin-top: 20px;
+	text-align: left;
+	padding: 6px;
+	color: red;
 }
