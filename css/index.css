@@ -6,13 +6,11 @@
     box-sizing: border-box;
 }
 
-
-body {
-    background: url(../img/molinos.jpg);
-    background-size: cover;
-    background-attachment: fixed;
-    font-family: Roboto;
-    margin-bottom: 250px;
+.ok{
+    text-align: center;
+    width: 100%;
+    background-color:forestgreen;
+    padding: 12px;    
 }
 
 .bad {
@@ -24,12 +22,14 @@ body {
 	color: #fff
 }
 
-.ok{
-    text-align: center;
-    width: 100%;
-    background-color:forestgreen;
-    padding: 12px;    
+body {
+    background: url(../img/molinos.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: Roboto;
+    margin-bottom: 250px;
 }
+
 .enca{
     background: rgba(123,98,0,0.5);
     overflow: hidden;
@@ -93,6 +93,15 @@ nav a:hover{
     }
 }
     
+.mensaje{
+	width: 100%;
+	max-width: 350px;
+	margin: auto;
+	margin-top: 20px;
+	text-align: left;
+	padding: 6px;
+	color: red;
+}
 
 .contenedor-form {
     background: rgba(0,0,0,.7);
@@ -203,12 +212,4 @@ nav a:hover{
     display: block;
 }
 
-.mensaje{
-	width: 100%;
-	max-width: 350px;
-	margin: auto;
-	margin-top: 20px;
-	text-align: left;
-	padding: 6px;
-	color: red;
-}
+

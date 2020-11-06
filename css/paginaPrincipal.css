@@ -1,0 +1,106 @@
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.ok{
+    text-align: center;
+    width: 100%;
+    background-color:forestgreen;
+    padding: 12px;    
+}
+
+.bad {
+	text-align: center;
+	width: 100%;
+    margin-bottom: 300px;
+	padding: 12px;
+	background-color: #a22;
+	color: #fff
+}
+
+body {
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: Roboto;
+    margin-bottom: 250px;
+}
+
+.enca{
+    background: rgba(153,98,0,1.5);
+    overflow: hidden;
+    width: 100%;
+    margin-bottom: 20px;
+    top:0;
+    left: 0;
+    z-index: 100;
+    position: fixed;
+}
+
+.wrapped{
+    width: 90%;
+    max-width: 1180px;
+    margin: auto;
+    overflow: hidden;
+}
+
+.logo{
+    color:#fff;
+    font-size: 50px;
+    font-family: Berlin Sans FB;
+    line-height: 70px;
+    float:left;
+    margin-top: 5px;
+    margin-left: 15px;
+}
+
+nav{
+    line-height: 40px;
+    float: right;
+}
+
+nav a{
+    color: white;
+    display: inline-block;
+    text-decoration: none;
+    font-family: Arial Narrow;
+    font-weight: bold;
+    padding: 20px;
+    font-size: 20px;
+    -webkit-transition:all 500ms ease;
+}
+
+nav a:hover{
+    border-bottom: 5px solid #0075d9;
+}
+
+//--------------------Tabla---------------------
+
+    table.tableizer-table {
+		font-size: 10px;
+		border: 1px solid black; 
+		font-family: Arial, Helvetica, sans-serif;
+	} 
+	.tableizer-table td {
+		padding: 4px;
+		margin: 3px;
+		border: 1px solid black;
+	}
+	.tableizer-table th {
+        padding: 5px;
+		background-color: #104E8B; 
+		color: #FFF;
+		font-weight: bold;
+	}
+    .tableizer-table{
+        margin-top: 150px;
+        margin-bottom: 50px;
+        margin-left: 150px;
+        max-height: 10px;
+        float:left;
+    }
+
+
