@@ -5,9 +5,9 @@
 	$n=$_POST['nombre'];
 	$e=$_POST['email'];
 
-    $sql="UPDATE datosusuario set nombre='$n',
-								email='$e',
-				where id='$id'";
+    $sql="UPDATE datosusuario SET nombre='$n',
+								email='$e'
+				WHERE id='$id'";
 	echo $result=mysqli_query($conex,$sql);
 
  ?>
