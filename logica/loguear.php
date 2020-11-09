@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="../css/estilos.css">
 <?php
 
-$conex=mysqli_connect("localhost","root","","registro");
+include('con_db.php');
 session_start();
 
 $usuario=$_POST['user'];

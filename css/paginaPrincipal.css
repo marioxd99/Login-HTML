@@ -78,29 +78,7 @@ nav a:hover{
 }
 
 //--------------------Tabla---------------------
-
-    table.tableizer-table {
-		font-size: 10px;
-		border: 1px solid black; 
-		font-family: Arial, Helvetica, sans-serif;
-	} 
-	.tableizer-table td {
-		padding: 4px;
-		margin: 3px;
-		border: 1px solid black;
-	}
-	.tableizer-table th {
-        padding: 5px;
-		background-color: #104E8B; 
-		color: #FFF;
-		font-weight: bold;
-	}
-    .tableizer-table{
-        margin-top: 150px;
-        margin-bottom: 50px;
-        margin-left: 150px;
-        max-height: 10px;
-        float:left;
-    }
-
-
+td{
+    background:#42552b;
+    color:white;
+}

@@ -5,7 +5,12 @@
     <title>Login Castilla La Mancha</title>
     <link rel="stylesheet" href="css/index.css">
      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
-     <link rel="icon"  href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Escudo_de_la_Junta_de_Comunidades_de_Castilla-La_Mancha.svg/250px-Escudo_de_la_Junta_de_Comunidades_de_Castilla-La_Mancha.svg.png">
+     <link rel="icon"  href="https://cutt.ly/UgKY2Lh">
+     <link rel="stylesheet" type="text/css" href="alertifyjs/css/alertify.css">
+     <link rel="stylesheet" type="text/css" href="alertifyjs/css/themes/default.css">
+     
+    <script src="jquery-3.2.1.min.js"></script>
+    <script src="alertifyjs/alertify.js"></script>
 </head>
 <body>
    <header class="enca">
@@ -28,7 +33,7 @@
             <form  method="POST" action="logica/loguear.php">
                 <input type="text" name="user" placeholder="Usuario" required>
                 <input type="password" name="contrasena" placeholder="Contraseña" required>
-                <input type="submit" name="inicio" value="Iniciar Sesión">
+                <input type="submit" id="inicio" name="inicio" value="Iniciar Sesión">
             </form>
         </div>
         
@@ -55,3 +60,11 @@
     <script src="js/main.js"></script>
 </body>
 </html>
+
+<script type="text/javascript">
+ $(document).ready(function(){
+     $('#inicio').click(function(){
+                 alertify.error("Usuario o Contraseña Incorrecto");           
+                });  
+        })
+</script>
