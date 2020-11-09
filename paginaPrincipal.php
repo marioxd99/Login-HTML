@@ -23,9 +23,8 @@
         
         <script src="jquery-3.2.1.min.js"></script>
         <script src="funciones.js"></script>
-        <script type="text/javascript" src="js/popper.min.js"></script>
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
-        <script src="alertifyjs/css/"></script>
+        <script src="alertifyjs/alertify.js"></script>
 
 </head>
 <body>
@@ -47,7 +46,7 @@
       </nav>
    </header>
 
-
+<!--Cambio de Contraseña -->
  <div class="modal" id="ventanaModal" tablaindex=-1 role="dialog" aria-labelledby="tituloVentana" aria-hidden="true">  
    <div class="modal-dialog" role="document">  
     <div class="modal-content">
@@ -85,6 +84,8 @@
 <?php
    $conex=mysqli_connect("localhost","root","mario","registro");
 ?>
+<!--Tabla Principal -->
+
 <div class="row p-4">
     <div class="col-sm-12">
        <h1 style="text-align:center;margin-top:90px;margin-bottom:40px;">Datos de Empadronamiento</h1>
@@ -104,17 +105,19 @@
             <?php
                 $sql="SELECT id,nombre,email FROM datosusuario";
                 $result=mysqli_query($conex,$sql);
-                while($ver=mysqli_fetch_row($result)){                  ?>            
+                while($ver=mysqli_fetch_row($result)){  
+            $datos=$ver[0]."||".$ver[1]."||".$ver[2];
+            ?>            
             <tr>
                 <td><?php echo $ver[1] ?></td>
                 <td><?php echo $ver[2] ?></td>
                 <td>
-                    <button class="btn btn-warning" data-toggle="modal" data-target="#modalEdicion">
+                    <button class="btn btn-warning" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform('<?php echo $datos ?>')">
                         <i class="far fa-edit"></i>
                     </button>
                 </td>
                 <td>
-                    <button class="btn btn-danger"><i class="far fa-times-circle"></i></button>
+                    <button class="btn btn-danger"><i class="far fa-times-circle" onclick="preguntarSiNo(<?php echo $ver[0]?>)"></i></button>
                 </td>
             </tr>
             <?php
@@ -136,7 +139,7 @@
       </div>
       <div class="modal-body">
         <label for="">Nombre</label>
-        <input type="text" name="" id="nombre" class="form-control input-sm">
+        <input type="text" name="" id="nombreA" class="form-control input-sm">
         <label for="">Email</label>
         <input type="text" name="" id="email" class="form-control input-sm">
       </div>
@@ -168,8 +171,7 @@
         <input type="text" name="" id="emailu" class="form-control input-sm">
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-warning id="actualizadatos"">
+        <button type="button" class="btn btn-warning" id="actualizadatos" data-dismiss="modal">
         Actualizar
         </button>
       </div>
@@ -183,9 +185,8 @@
 
 <script type="text/javascript">
     $(document).ready(function(){
-        $('#guardarnuevo').click(function(){
-            alertify.success("Mensaje de Exito!");
-          nombre=$('#nombre').val();
+        $('#guardarnuevo').click(function(){         
+          nombre=$('#nombreA').val();
           email=$('#email').val();
             agregardatos(nombre,email);
         });
@@ -197,6 +198,7 @@
         });
 
     });
+</script>
 
 
 

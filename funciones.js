@@ -1,18 +1,4 @@
 
-$(document).ready(function(){
-    
-    $('#inicio').
-    $.ajax({
-        url: '/logica/loguear.php',
-        type: 'POST',
-        data: {resultado},
-        success: function(){
-            console.log(response);
-        }
-        
-    })
-});
-
 
 function agregardatos(nombre,email){
 
@@ -38,7 +24,7 @@ function agregaform(datos){
 
 	d=datos.split('||');
 
-	$('#idpersona').val(d[0]);
+    $('#idpersona').val(d[0]);
 	$('#nombreu').val(d[1]);
 	$('#emailu').val(d[2]);
 
@@ -47,23 +33,19 @@ function agregaform(datos){
 
 function actualizaDatos(){
 
-
-	id=$('#idpersona').val();
+    id=$('#idpersona').val();
 	nombre=$('#nombreu').val();
 	email=$('#emailu').val();
 
-	cadena= "id=" + id +
-			"&nombre=" + nombre + 
-			"&email=" + apellido +
+	cadena= "id="  + id  + "&nombre=" + nombre + 
+			"&email=" + email ;		
 
 	$.ajax({
 		type:"POST",
-		url:"php/actualizaDatos.php",
+		url:"actualizaDatos.php",
 		data:cadena,
-		success:function(r){
-			
+		success:function(r){		
 			if(r==1){
-				$('#tabla').load('componentes/tabla.php');
 				alertify.success("Actualizado con exito :)");
 			}else{
 				alertify.error("Fallo el servidor :(");
@@ -85,11 +67,10 @@ function eliminarDatos(id){
 
 		$.ajax({
 			type:"POST",
-			url:"php/eliminarDatos.php",
+			url:"eliminarDatos.php",
 			data:cadena,
 			success:function(r){
 				if(r==1){
-					$('#tabla').load('componentes/tabla.php');
 					alertify.success("Eliminado con exito!");
 				}else{
 					alertify.error("Fallo el servidor :(");
