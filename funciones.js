@@ -39,6 +39,7 @@ function actualizaDatos(){
 
 	cadena= "id="  + id  + "&nombre=" + nombre + 
 			"&email=" + email ;		
+    
 	$.ajax({
 		type:"POST",
 		url:"actualizaDatos.php",
