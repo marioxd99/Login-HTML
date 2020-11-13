@@ -6,20 +6,20 @@
     box-sizing: border-box;
 }
 
-.ok{
+.ok {
     text-align: center;
     width: 100%;
-    background-color:forestgreen;
-    padding: 12px;    
+    background-color: forestgreen;
+    padding: 12px;
 }
 
 .bad {
-	text-align: center;
-	width: 100%;
+    text-align: center;
+    width: 100%;
     margin-bottom: 300px;
-	padding: 12px;
-	background-color: #a22;
-	color: #fff
+    padding: 12px;
+    background-color: #a22;
+    color: #fff
 }
 
 body {
@@ -29,40 +29,40 @@ body {
     margin-bottom: 250px;
 }
 
-.enca{
-    background: rgba(153,98,0,1.5);
+.enca {
+    background: rgba(153, 98, 0, 1.5);
     overflow: hidden;
     width: 100%;
     margin-bottom: 20px;
-    top:0;
+    top: 0;
     left: 0;
     z-index: 100;
     position: fixed;
 }
 
-.wrapped{
+.wrapped {
     width: 90%;
     max-width: 1180px;
     margin: auto;
     overflow: hidden;
 }
 
-.logo{
-    color:#fff;
+.logo {
+    color: #fff;
     font-size: 50px;
     font-family: Berlin Sans FB;
     line-height: 70px;
-    float:left;
+    float: left;
     margin-top: 5px;
     margin-left: 15px;
 }
 
-nav{
+nav {
     line-height: 40px;
     float: right;
 }
 
-nav a{
+nav a {
     color: white;
     display: inline-block;
     text-decoration: none;
@@ -70,15 +70,14 @@ nav a{
     font-weight: bold;
     padding: 20px;
     font-size: 20px;
-    -webkit-transition:all 500ms ease;
+    -webkit-transition: all 500ms ease;
 }
 
-nav a:hover{
+nav a:hover {
     border-bottom: 5px solid #0075d9;
 }
 
-//--------------------Tabla---------------------
-td{
-    background:#42552b;
-    color:white;
+#tituloDatos {
+    text-align: center;
+    margin-top: 110px;
 }

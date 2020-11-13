@@ -4,22 +4,22 @@
 include('con_db.php');
 session_start();
 
-$usuario=$_POST['user'];
-$clave=$_POST['contrasena'];
-$clavemd5=md5($clave);
+$usuario = $_POST['user'];
+$clave = $_POST['contrasena'];
+$clavemd5 = md5($clave);
 
-$q ="SELECT COUNT(*) as contar FROM datosusuario WHERE nombre='$usuario' and contraseña='$clavemd5'";
-$consulta=mysqli_query($conex,$q);
-$array=mysqli_fetch_array($consulta);
+$q = "SELECT COUNT(*) as contar FROM datosusuario WHERE nombre='$usuario' and contraseña='$clavemd5'";
+$consulta = mysqli_query($conex, $q);
+$array = mysqli_fetch_array($consulta);
 
-if($array['contar']>0){
-    $_SESSION['username']=$usuario;
+if ($array['contar'] > 0) {
+    $_SESSION['username'] = $usuario;
     header("location: ../paginaPrincipal.php");
-}else{
-        ?>
-        <?php
-        $_SESSION['username']=$usuario;
-        header("location: ../index.html");
+} else {
+?>
+<?php
+    $_SESSION['username'] = $usuario;
+    header("location: ../index.html");
 }
 
 ?>

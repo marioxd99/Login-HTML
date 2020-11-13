@@ -1,17 +1,18 @@
-function agregardatos(nombre, email, pass1) {
+function agregardatos(edades, castilla, albacete, ciudadreal, cuenca, guadalajara, toledo) {
 
-    cadena = "nombre=" + nombre +
-        "&email=" + email + "&pass1=" + pass1;
+    cadena = "edades=" + edades +
+        "&CastillaLaMancha=" + castilla + "&Albacete=" + albacete + "&CiudadReal=" + ciudadreal + "&Cuenca=" + cuenca +
+        "&Guadalajara=" + guadalajara + "&Toledo=" + toledo;
 
     $.ajax({
         type: "POST",
-        url: "operacionesBD/agregarDatos.php",
+        url: "operacionesPadron/agregarDatos.php",
         data: cadena,
         success: function(r) {
             if (r == 1) {
                 alertify.success("Agregado con exito :)");
             } else {
-                alertify.error("Error al Insertar  :(");
+                alertify.error("Fallo el servidor :(");
             }
         }
     });
@@ -23,8 +24,13 @@ function agregaform(datos) {
     d = datos.split('||');
 
     $('#idpersona').val(d[0]);
-    $('#nombreu').val(d[1]);
-    $('#emailu').val(d[2]);
+    $('#edadesu').val(d[1]);
+    $('#castillau').val(d[2]);
+    $('#albaceteu').val(d[3]);
+    $('#ciudadrealu').val(d[4]);
+    $('#cuencau').val(d[5]);
+    $('#guadalajarau').val(d[6]);
+    $('#toledou').val(d[7]);
 
 
 }
@@ -32,15 +38,21 @@ function agregaform(datos) {
 function actualizaDatos() {
 
     id = $('#idpersona').val();
-    nombre = $('#nombreu').val();
-    email = $('#emailu').val();
+    edades = $('#edadesu').val();
+    castilla = $('#castillau').val();
+    albacete = $('#albaceteu').val();
+    ciudadreal = $('#ciudadrealu').val();
+    cuenca = $('#cuencau').val();
+    guadalajara = $('#guadalajarau').val();
+    toledo = $('#toledou').val();
 
-    cadena = "id=" + id + "&nombre=" + nombre +
-        "&email=" + email;
+    cadena = "edades=" + edades +
+        "&CastillaLaMancha=" + castilla + "&Albacete=" + albacete + "&CiudadReal=" + ciudadreal + "&Cuenca=" + cuenca +
+        "&Guadalajara=" + guadalajara + "&Toledo=" + toledo;
 
     $.ajax({
         type: "POST",
-        url: "operacionesBD/actualizaDatos.php",
+        url: "operacionesPadron/actualizaDatos.php",
         data: cadena,
         success: function(r) {
             if (r == 1) {
@@ -65,7 +77,7 @@ function eliminarDatos(id) {
 
     $.ajax({
         type: "POST",
-        url: "operacionesBD/eliminarDatos.php",
+        url: "operacionesPadron/eliminarDatos.php",
         data: cadena,
         success: function(r) {
             if (r == 1) {
