@@ -42,48 +42,9 @@ if ($usuario == null || $usuario == '') {
       echo "<a style='color:white;font-size: 20px;'>Bienvenido $usuario</a>";
       ?>
       <a href="adminUsuarios.php">Administrar Usuarios</a>
-      <button class="btn" data-toggle="modal" data-target="#ventanaModal">
-        <a style="color:white;font-size: 20px;">Cambiar Contraseña</a>
-      </button>
       <a href="logica/logout.php">Cerrar Sesión</a>
     </nav>
   </header>
-
-  <!--Cambio de Contraseña -->
-  <div class="modal" id="ventanaModal" tablaindex=-1 role="dialog" aria-labelledby="tituloVentana" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <form action="logica/cambioContrasena.php" method="post">
-          <div class="modal-header">
-            <h4 id="tituloVentana">Cambio de Contraseña</h4>
-            <button class="close" data-dismiss="modal" aria-label="Cerrar">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="modal-body">
-              <div class="form-group">
-                <label for="recipient-name" class="col-form-label">Contraseña Actual:</label>
-                <input type="password" name="passActual" class="form-control" id="recipient-name">
-              </div>
-              <div class="form-group">
-                <label for="recipient-name" class="col-form-label">Nueva Contraseña:</label>
-                <input type="password" name="pass1" class="form-control" id="recipient-name">
-              </div>
-              <div class="form-group">
-                <label for="recipient-name" class="col-form-label">Nueva Contraseña:</label>
-                <input type="password" name="pass2" class="form-control" id="recipient-name">
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <input type="submit" class="btn btn-primary" name="guardar" value="Guardar">
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-
 
 
   <h1 id="tituloDatos">Datos de Empadronamiento</h1>

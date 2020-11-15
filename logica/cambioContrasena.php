@@ -6,8 +6,8 @@ require "con_db.php";
 
 $usuario = $_SESSION['username'];
 $passActual = $_POST['passActual'];
-$pass1 = $_POST['pass1'];
-$pass2 = $_POST['pass2'];
+$pass1 = $_POST['passNueva'];
+$pass2 = $_POST['passNuevaC'];
 if (strlen($passActual) > 4 and strlen($pass1) > 4 and strlen($pass2) > 4) {
 
     $passActual = md5($passActual);
@@ -28,15 +28,15 @@ if (strlen($passActual) > 4 and strlen($pass1) > 4 and strlen($pass2) > 4) {
         if ($pass1 == $pass2) {
             $sqlupdate = mysqli_query($conex, "UPDATE datosusuario SET contraseña='$pass1' WHERE id='{$_SESSION['id']}'");
             if ($sqlupdate) {
-                echo "Se ha actualizado la contraseña";
+                echo json_encode('correcto');
             } else {
-                echo "Las 2 contraseñas no coinciden";
+                echo json_encode('error');
             }
         }
     } else {
-        echo "La contraseña actual no coincide";
+        echo json_encode('error');
     }
 } else {
-    echo "Rellene todos los campos";
+    echo json_encode('error');
 }
 ?>

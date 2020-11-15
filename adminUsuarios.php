@@ -16,7 +16,7 @@ if ($usuario == null || $usuario == '') {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Pagina Principal</title>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
   <link rel="stylesheet" href="css/paginaPrincipal.css">
   <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -42,7 +42,6 @@ if ($usuario == null || $usuario == '') {
       $usuario = strtoupper($usuario);
       echo "<a style='color:white;font-size: 20px;'>Bienvenido $usuario</a>";
       ?>
-      <a href="adminUsuarios.php">Administrar Usuarios</a>
       <button class="btn" data-toggle="modal" data-target="#ventanaModal">
         <a style="color:white;font-size: 20px;">Cambiar Contraseña</a>
       </button>
