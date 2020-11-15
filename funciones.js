@@ -1,3 +1,49 @@
+var formulario = document.getElementById('formularioPass');
+
+if (formulario) {
+    formulario.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var datos = new FormData(formulario);
+
+        console.log(datos.get('passActual'))
+
+        fetch('logica/cambioContrasena.php', {
+                method: 'POST',
+                body: datos
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data == 'correcto') {
+                    alertify.success("Cambiado con exitooo :)");
+                } else {
+                    alertify.error("Error al Cambiar Contraseña!!  :(");
+                }
+
+            })
+    })
+}
+
+function cambiodePass(passActual, passNueva, passNuevaC) {
+
+    cadena = "passActual=" + passActual + "&passNueva=" + passNueva + "&passNuevaC=" + passNuevaC;
+
+    $.ajax({
+        type: "POST",
+        url: "logica/cambioContrasena.php",
+        data: cadena,
+        success: function(r) {
+            if (r == 1) {
+                alertify.success("Cambiado con exito :)");
+            } else {
+                alertify.error("Error al Cambiar Contraseña  :(");
+            }
+        }
+    });
+}
+
+
+
 function agregardatos(nombre, email, pass1) {
 
     cadena = "nombre=" + nombre +

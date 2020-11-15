@@ -85,13 +85,14 @@ if ($usuario == null || $usuario == '') {
   </div>
 
 
+
   <h1 id="tituloDatos">Datos de Empadronamiento</h1>
 
   <?php
   $conex = mysqli_connect("localhost", "root", "mario", "registro");
   ?>
-  <!--Tabla Principal -->
 
+  <!--Tabla Principal -->
   <div class="row p-4">
     <div class="col-sm-12">
       <caption>
@@ -116,7 +117,7 @@ if ($usuario == null || $usuario == '') {
         $sql = "SELECT id,edades,CastillaLaMancha,Albacete,CiudadReal,Cuenca,Guadalajara,Toledo FROM padron";
         $result = mysqli_query($conex, $sql);
         while ($ver = mysqli_fetch_row($result)) {
-          $datos = $ver[0] . "||" . $ver[1] . "||" . $ver[2] . "||" . $ver[3] . "||" . $ver[4] . "||" . $ver[5] . "||" . $ver[6] . "||" . $ver[7]. "||" . $ver[8];
+          $datos = $ver[0] . "||" . $ver[1] . "||" . $ver[2] . "||" . $ver[3] . "||" . $ver[4] . "||" . $ver[5] . "||" . $ver[6] . "||" . $ver[7];
         ?>
           <tr>
             <td><?php echo $ver[1] ?></td>
@@ -193,17 +194,17 @@ if ($usuario == null || $usuario == '') {
           <label for="">Edades</label>
           <input type="text" name="" id="edadesu" class="form-control input-sm">
           <label for="">Castilla La Mancha</label>
-          <input type="text" name="" id="castillau" class="form-control input-sm">
+          <input type="number" name="" id="castillau" class="form-control input-sm">
           <label for="">Albacete</label>
-          <input type="text" name="" id="albaceteu" class="form-control input-sm">
+          <input type="number" name="" id="albaceteu" class="form-control input-sm">
           <label for="">Ciudad Real</label>
-          <input type="text" name="" id="ciudadrealu" class="form-control input-sm">
+          <input type="number" name="" id="ciudadrealu" class="form-control input-sm">
           <label for="">Cuenca</label>
-          <input type="text" name="" id="cuencau" class="form-control input-sm">
+          <input type="number" name="" id="cuencau" class="form-control input-sm">
           <label for="">Guadalajara</label>
-          <input type="text" name="" id="guadalajarau" class="form-control input-sm">
+          <input type="number" name="" id="guadalajarau" class="form-control input-sm">
           <label for="">Toledo</label>
-          <input type="text" name="" id="toledou" class="form-control input-sm">
+          <input type="number" name="" id="toledou" class="form-control input-sm">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-warning" id="actualizadatos" data-dismiss="modal">

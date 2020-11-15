@@ -46,7 +46,10 @@ function actualizaDatos() {
     guadalajara = $('#guadalajarau').val();
     toledo = $('#toledou').val();
 
-    cadena = "edades=" + edades +
+    console.log(id)
+    console.log(edades)
+    console.log(castilla)
+    cadena = "id=" + id + "&edades=" + edades +
         "&CastillaLaMancha=" + castilla + "&Albacete=" + albacete + "&CiudadReal=" + ciudadreal + "&Cuenca=" + cuenca +
         "&Guadalajara=" + guadalajara + "&Toledo=" + toledo;
 
