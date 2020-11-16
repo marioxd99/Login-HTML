@@ -51,8 +51,25 @@ if ($usuario == null || $usuario == '') {
   </header>
 
 
-  <h1 id="tituloDatos">Datos de Empadronamiento</h1>
+  <section>
+   <img src="img/lagunas.jpg" alt="" id="bg">
+    <img src="img/primeraCapa.png" alt="" id="rocas">
+    <h2 id="text">Datos del Padrón</h2>
+  </section>
 
+  <script type="text/javascript">
+        let bg=document.getElementById("bg");
+        let rocas=document.getElementById("rocas");
+        let text=document.getElementById("text");
+        
+        window.addEventListener('scroll',function(){
+            var value=window.scrollY;
+            
+            bg.style.top= value+0.5+'px';    
+            rocas.style.top=-value*0.15 +'px';
+            text.style.top=value*1 +'px';       
+         })
+    </script>
   <?php
   $conex = mysqli_connect("localhost", "root", "mario", "registro");
   ?>
@@ -192,7 +209,8 @@ if ($usuario == null || $usuario == '') {
       </div>
     </div>
   </div>
-
+  <script src="js/rellax.min.js"></script>
+  <script src="js/index.js"></script>
 </body>
 
 </html>

@@ -18,7 +18,7 @@ if ($usuario == null || $usuario == '') {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pagina Principal</title>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-  <link rel="stylesheet" href="css/paginaPrincipal.css">
+  <link rel="stylesheet" href="css/adminUsuarios.css">
   <link rel="icon" href="https://cutt.ly/UgKY2Lh">
   <link rel="stylesheet" href="css/bootstrap.min.css">
 
@@ -86,6 +86,7 @@ if ($usuario == null || $usuario == '') {
   $conex = mysqli_connect("localhost", "root", "mario", "registro");
   ?>
 
+ <h1 id="tituloDatos" >Gestión de Usuarios</h1>
   <!--Tabla Principal -->
   <div class="row p-4">
     <div class="col-sm-12">
