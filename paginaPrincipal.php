@@ -114,29 +114,38 @@ if ($usuario == null || $usuario == '') {
   
   <!--Modal para registros nuevos -->
   <div class="modal fade" id="modalRegistro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Agrega nuevo datos</h5>
+          <h4 class="modal-title" id="exampleModalLabel">Agrega nuevos datos</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <label for="">Edades</label>
-          <input type="number" name="" id="edadesA" class="form-control input-sm">
-          <label for="">Castilla La Mancha</label>
-          <input type="number" name="" id="castillaA" class="form-control input-sm">
-          <label for="">Albacete</label>
-          <input type="number" name="" id="albaceteA" class="form-control input-sm">
-          <label for="">Ciudad Real</label>
-          <input type="number" name="" id="ciudadrealA" class="form-control input-sm">
-          <label for="">Cuenca</label>
-          <input type="number" name="" id="cuencaA" class="form-control input-sm">
-          <label for="">Guadalajara</label>
-          <input type="number" name="" id="guadalajaraA" class="form-control input-sm">
-          <label for="">Toledo</label>
-          <input type="number" name="" id="toledoA" class="form-control input-sm">
+          <table>
+            <thead>
+              <td style="margin:15px;text-align:center;"><label for="">Edades</label></td>
+              <td style="margin:15px;text-align:center;"><label for="">Castilla La Mancha</label></td>
+              <td style="margin:15px;text-align:center;"><label for="">Albacete</label></td>
+              <td style="padding:5px;text-align:center;"><label for="">Ciudad Real</label></td>
+              <td style="padding:5px;text-align:center;"><label for="">Cuenca</label></td>
+              <td style="padding:5px;text-align:center;"><label for="">Guadalajara</label></td>
+              <td style="padding:5px;text-align:center;"><label for="">Toledo</label></td>
+            </thead>
+            <tbody>
+            <tr>        
+              <td style="padding:5px;"><input type="number" name="" id="edadesA" class="form-control input-sm"></td>
+              <td style="padding:5px;"><input type="number" name="" id="castillaA" class="form-control input-sm"> </td>
+              <td style="padding:5px;"><input type="number" name="" id="albaceteA" class="form-control input-sm"> </td>
+              <td style="padding:5px;"><input type="number" name="" id="ciudadrealA" class="form-control input-sm"></td>
+              <td style="padding:5px;"><input type="number" name="" id="cuencaA" class="form-control input-sm"> </td>
+              <td style="padding:5px;"><input type="number" name="" id="guadalajaraA" class="form-control input-sm"> </td>
+              <td style="padding:5px;"><input type="number" name="" id="toledoA" class="form-control input-sm"></td>
+            </tr>  
+            </tbody>
+          </table>
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" id="guardarnuevo">
