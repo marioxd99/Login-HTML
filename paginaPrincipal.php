@@ -10,19 +10,23 @@ if ($usuario == null || $usuario == '') {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8">
   <title>Pagina Principal</title>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
   <link rel="stylesheet" href="css/paginaPrincipal.css">
+  <link rel="icon" href="https://cutt.ly/UgKY2Lh">
+
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="alertifyjs/css/alertify.css">
   <link rel="stylesheet" type="text/css" href="alertifyjs/css/themes/default.css">
-  <link rel="icon" href="https://cutt.ly/UgKY2Lh">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+  
 
   <script src="js/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
   <script src="funcionesPadron.js"></script>
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
   <script src="alertifyjs/alertify.js"></script>
@@ -57,13 +61,13 @@ if ($usuario == null || $usuario == '') {
   <div class="row p-4">
     <div class="col-sm-12">
       <caption>
-        <button class="btn btn-primary" data-toggle="modal" data-target="#modalRegistro">
+        <button style="margin-bottom:15px;" class="btn btn-primary" data-toggle="modal" data-target="#modalRegistro">
           Agregar nuevo &nbsp;
           <i class="fas fa-plus-square"></i>
         </button>
       </caption>
-      <table class="table table-hover table-condensed table-bordered  mt-2 table-sm">
-        <tr>
+      <table id ="tablax" class="table table-striped table-bordered  mt-2 table-sm display">
+        <thead>
           <td style="background:#42552b;color:white;">Edades</td>
           <td style="background:#42552b;color:white;">Castilla La Mancha</td>
           <td style="background:#42552b;color:white;">Albacete</td>
@@ -73,13 +77,15 @@ if ($usuario == null || $usuario == '') {
           <td style="background:#42552b;color:white;">Toledo</td>
           <td style="background:#42552b;color:white;">Editar</td>
           <td style="background:#42552b;color:white;">Eliminar</td>
-        </tr>
-        <?php
-        $sql = "SELECT id,edades,CastillaLaMancha,Albacete,CiudadReal,Cuenca,Guadalajara,Toledo FROM padron";
-        $result = mysqli_query($conex, $sql);
-        while ($ver = mysqli_fetch_row($result)) {
-          $datos = $ver[0] . "||" . $ver[1] . "||" . $ver[2] . "||" . $ver[3] . "||" . $ver[4] . "||" . $ver[5] . "||" . $ver[6] . "||" . $ver[7];
-        ?>
+        </thead>
+        <tbody>
+          <?php
+          $sql = "SELECT id,edades,CastillaLaMancha,Albacete,CiudadReal,Cuenca,Guadalajara,Toledo FROM padron";
+          $result = mysqli_query($conex, $sql);
+          while ($ver = mysqli_fetch_row($result)) {
+            $datos = $ver[0] . "||" . $ver[1] . "||" . $ver[2] . "||" . $ver[3] . "||" . $ver[4] . "||" . $ver[5] . "||" . $ver[6] . "||" . $ver[7];
+
+          ?>
           <tr>
             <td><?php echo $ver[1] ?></td>
             <td><?php echo $ver[2] ?></td>
@@ -97,13 +103,15 @@ if ($usuario == null || $usuario == '') {
               <button class="btn btn-danger"><i class="far fa-times-circle" onclick="preguntarSiNo(<?php echo $ver[0] ?>)"></i></button>
             </td>
           </tr>
-        <?php
-        }
-        ?>
+          <?php
+            }
+          ?>
+       </tbody>
       </table>
     </div>
   </div>
 
+  
   <!--Modal para registros nuevos -->
   <div class="modal fade" id="modalRegistro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
@@ -195,6 +203,38 @@ if ($usuario == null || $usuario == '') {
 
     $('#actualizadatos').click(function() {
       actualizaDatos();
+    });
+
+    $('#tablax').DataTable({
+      lengthMenu: [[5,10,25,50,-1], [5,10,25,50,'All']],
+      language: {      
+          "sProcessing": "Procesando...",
+          "sLengthMenu": "Mostrar _MENU_ registros",
+          "sZeroRecords": "No se encontraron resultados",
+          "sEmptyTable": "Ningún dato disponible en esta tabla",
+          "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+          "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+          "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+          "sInfoPostFix": "",
+          "sSearch": "Buscar:",
+          "sUrl": "",
+          "sInfoThousands": ",",
+          "sLoadingRecords": "Cargando...",
+          "oPaginate": {
+            "sFirst": "Primero",
+            "sLast": "Último",
+            "sNext": "Siguiente",
+            "sPrevious": "Anterior"
+          },
+          "oAria": {
+            "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+          },
+          "buttons": {
+            "copy": "Copiar",
+            "colvis": "Visibilidad"        
+        }
+      }
     });
 
   });

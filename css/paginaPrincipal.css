@@ -4,6 +4,7 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    margin-bottom: 1px;
 }
 
 .ok {
@@ -26,7 +27,6 @@ body {
     background-size: cover;
     background-attachment: fixed;
     font-family: Roboto;
-    margin-bottom: 250px;
 }
 
 .enca {
