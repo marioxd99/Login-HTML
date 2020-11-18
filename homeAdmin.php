@@ -1,11 +1,8 @@
 <?php
 session_start();
-error_reporting(0);
-$usuario = $_SESSION['username'];
-
+$usuario=$_SESSION['usuario']['nombre'];
 if ($usuario == null || $usuario == '') {
-  echo "Usted no tiene acceso";
-  header("location: index.html");
+  header("location: index.php");
   die();
 }
 ?>
@@ -45,7 +42,7 @@ if ($usuario == null || $usuario == '') {
       $usuario = strtoupper($usuario);
       echo "<a style='color:white;font-size: 20px;'>Bienvenido $usuario</a>";
       ?>
-      <a href="adminUsuarios.php">Administrar Usuarios</a>
+      <a href="adminAdmin.php">Administrar Usuarios</a>
       <a href="logica/logout.php">Cerrar Sesión</a>
     </nav>
   </header>
@@ -54,13 +51,13 @@ if ($usuario == null || $usuario == '') {
   <section>
    <img src="img/lagunas.jpg" alt="" id="bg">
     <img src="img/primeraCapa.png" alt="" id="rocas">
-    <h2 id="text">Datos del Padrón</h2>
+    <h2 id="textPadron">Datos del Padrón</h2>
   </section>
 
   <script type="text/javascript">
         let bg=document.getElementById("bg");
         let rocas=document.getElementById("rocas");
-        let text=document.getElementById("text");
+        let text=document.getElementById("textPadron");
         
         window.addEventListener('scroll',function(){
             var value=window.scrollY;
@@ -93,7 +90,6 @@ if ($usuario == null || $usuario == '') {
           <td style="background:#42552b;color:white;">Guadalajara</td>
           <td style="background:#42552b;color:white;">Toledo</td>
           <td style="background:#42552b;color:white;">Editar</td>
-          <td style="background:#42552b;color:white;">Eliminar</td>
         </thead>
         <tbody>
           <?php
@@ -115,9 +111,6 @@ if ($usuario == null || $usuario == '') {
               <button class="btn btn-warning" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform('<?php echo $datos ?>')">
                 <i class="far fa-edit"></i>
               </button>
-            </td>
-            <td>
-              <button class="btn btn-danger"><i class="far fa-times-circle" onclick="preguntarSiNo(<?php echo $ver[0] ?>)"></i></button>
             </td>
           </tr>
           <?php

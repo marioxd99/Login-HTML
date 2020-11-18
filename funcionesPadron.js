@@ -46,13 +46,11 @@ function actualizaDatos() {
     guadalajara = $('#guadalajarau').val();
     toledo = $('#toledou').val();
 
-    console.log(id)
-    console.log(edades)
-    console.log(castilla)
     cadena = "id=" + id + "&edades=" + edades +
         "&CastillaLaMancha=" + castilla + "&Albacete=" + albacete + "&CiudadReal=" + ciudadreal + "&Cuenca=" + cuenca +
         "&Guadalajara=" + guadalajara + "&Toledo=" + toledo;
 
+    console.log(cadena)
     $.ajax({
         type: "POST",
         url: "operacionesPadron/actualizaDatos.php",
@@ -71,7 +69,7 @@ function actualizaDatos() {
 function preguntarSiNo(id) {
     alertify.confirm('Eliminar Datos', '¿Esta seguro de eliminar este registro?',
         function() { eliminarDatos(id) },
-        function() { alertify.error('Se cancelo') });
+        function() { alertify.error('Operacion Cancelada') });
 }
 
 function eliminarDatos(id) {

@@ -1,11 +1,8 @@
 <?php
 session_start();
-error_reporting(0);
-$usuario = $_SESSION['username'];
-
+$usuario =$_SESSION['usuario']['nombre'];
 if ($usuario == null || $usuario == '') {
-  echo "Usted no tiene acceso";
-  header("location: index.html");
+  header("location: index.php");
   die();
 }
 ?>
@@ -37,7 +34,7 @@ if ($usuario == null || $usuario == '') {
   <header class="enca">
     <div class="wrapper">
       <div class="logo">
-        <a style="color: white;" href="paginaPrincipal.php"> Castilla La Mancha</a>
+        <a style="color: white;" href="homeUsuario.php"> Castilla La Mancha</a>
       </div>
     </div>
     <nav>
@@ -92,17 +89,11 @@ if ($usuario == null || $usuario == '') {
     <div class="col-sm-12">
       <h1 style="text-align:center;margin-top:90px;margin-bottom:40px;">Gestión de Usuarios</h1>
       <caption>
-        <button style="margin-bottom:15px;" class="btn btn-primary" data-toggle="modal" data-target="#modalRegistro">
-          Agregar nuevo &nbsp;
-          <i class="fas fa-plus-square"></i>
-        </button>
       </caption>
-      <table id="tablax" class="table table-hover table-condensed table-bordered  mt-2 ">
+      <table id="tablax" class="table table-striped table-hover table-condensed table-bordered  mt-2 ">
         <thead>
           <td style="background:#42552b;color:white;">Nombre</td>
           <td style="background:#42552b;color:white;">Email</td>
-          <td style="background:#42552b;color:white;">Editar</td>
-          <td style="background:#42552b;color:white;">Eliminar</td>
         </thead>
         <tbody>
           <?php
@@ -114,14 +105,6 @@ if ($usuario == null || $usuario == '') {
             <tr>
               <td><?php echo $ver[1] ?></td>
               <td><?php echo $ver[2] ?></td>
-              <td>
-                <button class="btn btn-warning" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform('<?php echo $datos ?>')">
-                  <i class="far fa-edit"></i>
-                </button>
-              </td>
-              <td>
-                <button class="btn btn-danger"><i class="far fa-times-circle" onclick="preguntarSiNo(<?php echo $ver[0] ?>)"></i></button>
-              </td>
             </tr>
           <?php
           }
@@ -131,61 +114,9 @@ if ($usuario == null || $usuario == '') {
     </div>
   </div>
 
-  <!--Modal para registros nuevos -->
-  <div class="modal fade" id="modalRegistro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Agrega nuevo datos</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <label for="">Nombre</label>
-          <input type="text" name="" id="nombreA" class="form-control input-sm">
-          <label for="">Email</label>
-          <input type="text" name="" id="emailA" class="form-control input-sm">
-          <label for="">Contaseña</label>
-          <input type="password" name="" id="pass1" class="form-control input-sm">
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" id="guardarnuevo">
-            Agregar
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
+ 
 
-
-  <!--Modal para editar registros -->
-  <div class="modal fade" id="modalEdicion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Actualizar Datos</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <input type="text" hidden="" id="idpersona" name="">
-          <label for="">Nombre</label>
-          <input type="text" name="" id="nombreu" class="form-control input-sm">
-          <label for="">Email</label>
-          <input type="email" name="" id="emailu" class="form-control input-sm">
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-warning" id="actualizadatos" data-dismiss="modal">
-            Actualizar
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script src="funciones.js"></script>
+  <script src="funcionesUsuario.js"></script>
 </body>
 
 </html>

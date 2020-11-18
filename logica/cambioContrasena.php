@@ -4,7 +4,7 @@
 session_start();
 require "con_db.php";
 
-$usuario = $_SESSION['username'];
+$usuario = $_SESSION['usuario']['nombre'];
 $passActual = $_POST['passActual'];
 $pass1 = $_POST['passNueva'];
 $pass2 = $_POST['passNuevaC'];

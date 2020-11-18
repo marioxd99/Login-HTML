@@ -12,7 +12,7 @@
 
     $sql="UPDATE padron SET edades='$edades',
 								CastillaLaMancha='$castilla',Albacete='$albacete',CiudadReal='$ciudadreal',
-								Cuenca='$cuenca',Guadalajara='$guadalajara's,Toledo='$toledo'
+								Cuenca='$cuenca',Guadalajara='$guadalajara',Toledo='$toledo'
 				WHERE id='$id'";
 	echo $result=mysqli_query($conex,$sql);
 

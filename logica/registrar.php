@@ -17,13 +17,13 @@ if (strlen($pass) < 7) {
 if ($pass != $pass2) {
 ?>
     <?php
-    header("location: ../index.html");
+    header("location: ../index.php");
     ?>
     <h1 class="bad">No coinciden las contraseñas</h1>
     <?php
 } else {
     $contrasenaUser = md5($pass);
-    $consulta = "INSERT INTO datosusuario VALUES ('','$nombre','$email','$contrasenaUser','')";
+    $consulta = "INSERT INTO datosusuario VALUES ('','$nombre','$email','$contrasenaUser','Usuario')";
     $resultado = mysqli_query($conex, $consulta);
     if (!$resultado) {
     ?>
@@ -33,7 +33,7 @@ if ($pass != $pass2) {
     ?>
         <h1 class="ok">¡Usuario registrado Correctamente!</h1>
         <?php
-        header("location: ../index.html");
+        header("location: ../index.php");
         ?>
 <?php
     }

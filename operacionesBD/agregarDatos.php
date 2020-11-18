@@ -6,8 +6,8 @@
 	$p=$_POST['pass1'];
 	$p=md5($p);
 
-	$sql="INSERT into datosusuario (nombre,email,contraseña)
-								values ('$n','$e','$p')";
+	$sql="INSERT into datosusuario (nombre,email,contraseña,rol)
+								values ('$n','$e','$p','Admin')";
 	echo $result=mysqli_query($conex,$sql);
 
  ?>

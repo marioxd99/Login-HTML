@@ -80,7 +80,7 @@ function actualizaDatos() {
 function preguntarSiNo(id) {
     alertify.confirm('Eliminar Datos', '¿Esta seguro de eliminar este registro?',
         function() { eliminarDatos(id) },
-        function() { alertify.error('Se cancelo') });
+        function() { alertify.error('Operacion Cancelada') });
 }
 
 function eliminarDatos(id) {
