@@ -1,9 +1,17 @@
 <?php
 session_start();
 $usuario =$_SESSION['usuario']['nombre'];
+$idUsuario=$_SESSION['usuario']['id'];
+$rolUsuario=$_SESSION['usuario']['rol'];
 if ($usuario == null || $usuario == '') {
   header("location: index.php");
   die();
+}
+if($rolUsuario == 'Admin'){
+  header("location: adminAdmin.php");
+}
+if($rolUsuario == 'SuperAdmin'){
+  header("location: adminSuper.php");
 }
 ?>
 
@@ -40,7 +48,7 @@ if ($usuario == null || $usuario == '') {
     <nav>
       <?php
       $usuario = strtoupper($usuario);
-      echo "<a style='color:white;font-size: 20px;'>Bienvenido $usuario</a>";
+      echo "<a style='color:white;font-size: 20px;text-align:center;margin-bottom:0;'>Bienvenido $usuario<sub> <i>$rolUsuario</i></sub></a>";
       ?>
       <button class="btn" data-toggle="modal" data-target="#ventanaModal">
         <a style="color:white;font-size: 20px;">Cambiar Contraseña</a>
@@ -83,7 +91,7 @@ if ($usuario == null || $usuario == '') {
   $conex = mysqli_connect("localhost", "root", "mario", "registro");
   ?>
 
- <h1 id="tituloDatos" >Gestión de Usuarios</h1>
+
   <!--Tabla Principal -->
   <div class="row p-4">
     <div class="col-sm-12">
@@ -94,26 +102,54 @@ if ($usuario == null || $usuario == '') {
         <thead>
           <td style="background:#42552b;color:white;">Nombre</td>
           <td style="background:#42552b;color:white;">Email</td>
+          <td style="background:#42552b;color:white;">Editar</td>
         </thead>
         <tbody>
           <?php
-          $sql = "SELECT id,nombre,email FROM datosusuario";
+          $sql = "SELECT id,nombre,email,rol FROM datosusuario WHERE id='$idUsuario'";
           $result = mysqli_query($conex, $sql);
-          while ($ver = mysqli_fetch_row($result)) {
-            $datos = $ver[0] . "||" . $ver[1] . "||" . $ver[2];
+          $ver = mysqli_fetch_row($result);
+          $datos = $ver[0] . "||" . $ver[1] . "||" . $ver[2];
           ?>
             <tr>
               <td><?php echo $ver[1] ?></td>
               <td><?php echo $ver[2] ?></td>
+              <td>
+                <button class="btn btn-warning" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform('<?php echo $datos ?>')">
+                  <i class="far fa-edit"></i>
+                </button>
+              </td>
             </tr>
-          <?php
-          }
-          ?>
         </tbody>
       </table>
     </div>
   </div>
-
+  
+<!--Modal para editar registros -->
+<div class="modal fade" id="modalEdicion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Actualizar Datos</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="text" hidden="" id="idpersona" name="">
+          <label for="">Nombre</label>
+          <input type="text" name="" id="nombreu" class="form-control input-sm">
+          <label for="">Email</label>
+          <input type="email" name="" id="emailu" class="form-control input-sm">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" id="actualizadatos" data-dismiss="modal">
+            Actualizar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
  
 
   <script src="funcionesUsuario.js"></script>

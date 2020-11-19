@@ -7,7 +7,7 @@ $usuario = $_POST['user'];
 $clave = $_POST['contrasena'];
 $clavemd5 = md5($clave);
 
-$q = "SELECT nombre,rol FROM datosusuario WHERE nombre='$usuario' and contraseña='$clavemd5'";
+$q = "SELECT id,nombre,rol FROM datosusuario WHERE nombre='$usuario' and contraseña='$clavemd5'";
 $consulta = mysqli_query($conex, $q);
 
 if (mysqli_num_rows($consulta) > 0) {

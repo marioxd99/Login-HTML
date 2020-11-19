@@ -1,9 +1,17 @@
 <?php
 session_start();
 $usuario =$_SESSION['usuario']['nombre'];
+$idUsuario=$_SESSION['usuario']['id'];
+$rolUsuario=$_SESSION['usuario']['rol'];
 if ($usuario == null || $usuario == '') {
   header("location: index.php");
   die();
+}
+if($rolUsuario == 'Admin'){
+  header("location: adminAdmin.php");
+}
+if($rolUsuario == 'Usuario'){
+  header("location: adminUsuario.php");
 }
 ?>
 
@@ -40,7 +48,7 @@ if ($usuario == null || $usuario == '') {
     <nav>
       <?php
       $usuario = strtoupper($usuario);
-      echo "<a style='color:white;font-size: 20px;'>Bienvenido $usuario</a>";
+      echo "<a style='color:white;font-size: 20px;text-align:center;margin-bottom:0;'>Bienvenido $usuario<sub> <i>$rolUsuario</i></sub></a>";
       ?>
       <button class="btn" data-toggle="modal" data-target="#ventanaModal">
         <a style="color:white;font-size: 20px;">Cambiar Contraseña</a>
@@ -98,19 +106,21 @@ if ($usuario == null || $usuario == '') {
         <thead>
           <td style="background:#42552b;color:white;">Nombre</td>
           <td style="background:#42552b;color:white;">Email</td>
+          <td style="background:#42552b;color:white;">Rol</td>
           <td style="background:#42552b;color:white;">Editar</td>
           <td style="background:#42552b;color:white;">Eliminar</td>
         </thead>
         <tbody>
           <?php
-          $sql = "SELECT id,nombre,email FROM datosusuario";
+          $sql = "SELECT id,nombre,email,rol FROM datosusuario";
           $result = mysqli_query($conex, $sql);
           while ($ver = mysqli_fetch_row($result)) {
-            $datos = $ver[0] . "||" . $ver[1] . "||" . $ver[2];
+            $datos = $ver[0] . "||" . $ver[1] . "||" . $ver[2] . "||" . $ver[3];
           ?>
             <tr>
               <td><?php echo $ver[1] ?></td>
               <td><?php echo $ver[2] ?></td>
+              <td><?php echo $ver[3] ?></td>
               <td>
                 <button class="btn btn-warning" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform('<?php echo $datos ?>')">
                   <i class="far fa-edit"></i>
