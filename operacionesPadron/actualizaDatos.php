@@ -1,6 +1,6 @@
 <?php 
 
-	$conex=mysqli_connect("localhost","root","mario","registro");
+	include('../logica/con_db.php');
 	$id=$_POST['id'];
 	$edades=$_POST['edades'];
 	$castilla=$_POST['CastillaLaMancha'];

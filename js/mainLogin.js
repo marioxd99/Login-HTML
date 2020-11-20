@@ -29,9 +29,9 @@ jQuery(document).on('submit', '#formLog', function(event) {
             }
         })
         .fail(function(resp) {
-            alertify.error('Usuario o Contraseña Incorrecta');
+
         })
         .always(function() {
-            console.log("complete");
+
         });
 });

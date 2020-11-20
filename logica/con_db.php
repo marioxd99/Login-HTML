@@ -1,3 +1,3 @@
 <?php
- $conex=mysqli_connect("localhost","root","mario","registro");
+ $conex=mysqli_connect("localhost","root","","registro");
 ?>

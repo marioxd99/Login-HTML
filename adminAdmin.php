@@ -88,7 +88,7 @@ if($rolUsuario == 'Usuario'){
   </div>
 
   <?php
-  $conex = mysqli_connect("localhost", "root", "mario", "registro");
+  $conex = mysqli_connect("localhost", "root", "", "registro");
   ?>
 
  <h1 id="tituloDatos" >Gestión de Usuarios</h1>

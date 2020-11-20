@@ -1,6 +1,6 @@
 <?php 
 
-	$conex=mysqli_connect("localhost","root","mario","registro");
+	include('../logica/con_db.php');
 	$n=$_POST['nombre'];
 	$e=$_POST['email'];
 	$p=$_POST['pass1'];

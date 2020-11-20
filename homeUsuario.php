@@ -49,7 +49,7 @@ if($rolUsuario == 'SuperAdmin'){
       $usuario = strtoupper($usuario);
       echo "<a style='color:white;font-size: 20px;text-align:center;margin-bottom:0;'>Bienvenido $usuario<sub> <i>$rolUsuario</i></sub></a>";
       ?>
-      <a href="adminUsuario.php">Administrar Usuarios</a>
+      <a href="adminUsuario.php">Ver Perfil</a>
       <a href="logica/logout.php">Cerrar Sesión</a>
     </nav>
   </header>
@@ -76,7 +76,7 @@ if($rolUsuario == 'SuperAdmin'){
   </script>
 
   <?php
-  $conex = mysqli_connect("localhost", "root", "mario", "registro");
+  $conex = mysqli_connect("localhost", "root", "", "registro");
   ?>
 
 
