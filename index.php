@@ -2,14 +2,8 @@
     session_start();
 
     if(isset($_SESSION['usuario'])){
-        if($_SESSION['usuario']['rol']=="SuperAdmin"){
-            header('location: homeSuperAdmin.php');
-        }else if($_SESSION['usuario']['rol']=="Admin"){
-            header('location: homeAdmin.php');
-        }else if($_SESSION['usuario']['rol']=="Usuario"){
-            header('location: homeUsuario.php');
+            header('location: home.php');
         }
-    }
 ?>
     <!DOCTYPE html>
     <html lang="es">
@@ -19,7 +13,7 @@
         <title>Login Castilla La Mancha</title>
         <link rel="stylesheet" href="css/index.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-        <link rel="icon" href="https://cutt.ly/UgKY2Lh">
+        <link rel="icon" href="img/Escudo.png">
     </head>
 
     <body>

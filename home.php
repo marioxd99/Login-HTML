@@ -6,12 +6,6 @@ if ($usuario == null || $usuario == '') {
   header("location: index.php");
   die();
 }
-if($rolUsuario == 'Admin'){
-  header("location: homeAdmin.php");
-}
-if($rolUsuario == 'SuperAdmin'){
-  header("location: homeSuperAdmin.php");
-}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -21,7 +15,20 @@ if($rolUsuario == 'SuperAdmin'){
   <title>Pagina Principal</title>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
   <link rel="stylesheet" href="css/paginaPrincipal.css">
-  <link rel="icon" href="https://cutt.ly/UgKY2Lh">
+  <link rel="icon" href="img/Escudo.png">
+  <style id="antiClickjack">
+    body {
+      display: none !important;
+    }
+  </style>
+  <script type="text/javascript">
+    if (self === top) {
+      var antiClickjack = document.getElementById("antiClickjack");
+      antiClickjack.parentNode.removeChild(antiClickjack);
+    } else {
+      top.location = self.location;
+    }
+  </script>
 
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="alertifyjs/css/alertify.css">
@@ -31,7 +38,7 @@ if($rolUsuario == 'SuperAdmin'){
 
   <script src="js/jquery-3.2.1.min.js"></script>
   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
-  <script src="funcionesPadron.js"></script>
+  <script src="js/funcionesPadron.js"></script>
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
   <script src="alertifyjs/alertify.js"></script>
 
@@ -41,7 +48,7 @@ if($rolUsuario == 'SuperAdmin'){
   <header class="enca">
     <div class="wrapper">
       <div class="logo">
-        <a style="color: white;" href="homeUsuario.php"> Castilla La Mancha</a>
+        <a style="color: white;" href="home.php"> Castilla La Mancha</a>
       </div>
     </div>
     <nav>
@@ -49,7 +56,17 @@ if($rolUsuario == 'SuperAdmin'){
       $usuario = strtoupper($usuario);
       echo "<a style='color:white;font-size: 20px;text-align:center;margin-bottom:0;'>Bienvenido $usuario<sub> <i>$rolUsuario</i></sub></a>";
       ?>
-      <a href="adminUsuario.php">Ver Perfil</a>
+      <?php
+      if ($rolUsuario == 'Usuario') {
+      ?>
+        <a href="adminUsuarios.php">Ver Perfil</a>
+      <?php
+      } else {
+      ?>
+        <a href="adminUsuarios.php">Administrar Usuarios</a>
+      <?php
+      }
+      ?>
       <a href="logica/logout.php">Cerrar Sesión</a>
     </nav>
   </header>
@@ -60,7 +77,7 @@ if($rolUsuario == 'SuperAdmin'){
     <img src="img/primeraCapa.png" alt="" id="rocas">
     <h2 id="textPadron">Datos del Padrón</h2>
   </section>
-
+  <!--Efecto Parallax -->
   <script type="text/javascript">
     let bg = document.getElementById("bg");
     let rocas = document.getElementById("rocas");
@@ -79,15 +96,25 @@ if($rolUsuario == 'SuperAdmin'){
   $conex = mysqli_connect("localhost", "root", "", "registro");
   ?>
 
-
-  <button type="button" class="btn btn-primary" style="margin-left:570px;text-align:center" onclick="mostrarAmbosSexos();">Ambos Sexos</button>
-  <button type="button" class="btn btn-primary" onclick="mostrarHombres();">Hombres</button>
-  <button type="button" class="btn btn-primary" onclick="mostrarMujeres();">Mujeres</button>
+  <button type="button" class="btn btn-primary" style="margin-left:560px;text-align:center;height:60px;" onclick="mostrarAmbosSexos();">Ambos Sexos &nbsp;<i class="fas fa-venus-mars"></i></button>
+  <button type="button" class="btn btn-primary" style="height:60px;" onclick="mostrarHombres();">Hombres &nbsp; <i class="fas fa-male"></i></button>
+  <button type="button" class="btn btn-primary" style="height:60px;" onclick="mostrarMujeres();">Mujeres &nbsp; <i class="fas fa-female"></i></button>
 
   <!--Tabla Principal -->
   <div id="ambosSexos" class="row p-4">
     <div class="col-sm-12">
-      <br>
+      <caption>
+        <?php
+        if ($rolUsuario != 'Usuario') {
+        ?>
+          <button style="margin-bottom:15px;" class="btn btn-primary" data-toggle="modal" data-target="#modalRegistro">
+            Agregar nuevo &nbsp;
+            <i class="fas fa-plus-square"></i>
+          </button>
+        <?php
+        }
+        ?>
+      </caption>
       <h2 style="float:right;color:black;margin-right:600px;margin-top:20px;">Ambos Sexos</h2>
       <table id="tablax" class="table table-striped table-bordered  mt-2 table-sm">
         <thead>
@@ -98,6 +125,18 @@ if($rolUsuario == 'SuperAdmin'){
           <td style="background:#42552b;color:white;">Cuenca</td>
           <td style="background:#42552b;color:white;">Guadalajara</td>
           <td style="background:#42552b;color:white;">Toledo</td>
+          <?php
+          if ($rolUsuario == 'SuperAdmin') {
+          ?>
+            <td style="background:#42552b;color:white;">Editar</td>
+            <td style="background:#42552b;color:white;">Eliminar</td>
+          <?php
+          } else if ($rolUsuario == 'Admin') {
+          ?>
+            <td style="background:#42552b;color:white;">Editar</td>
+          <?php
+          }
+          ?>
         </thead>
         <tbody>
           <?php
@@ -115,6 +154,28 @@ if($rolUsuario == 'SuperAdmin'){
               <td><?php echo $ver[5] ?></td>
               <td><?php echo $ver[6] ?></td>
               <td><?php echo $ver[7] ?></td>
+              <?php
+              if ($rolUsuario == 'SuperAdmin') {
+              ?>
+                <td>
+                  <button class="btn btn-warning" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform('<?php echo $datos ?>')">
+                    <i class="far fa-edit"></i>
+                  </button>
+                </td>
+                <td>
+                  <button class="btn btn-danger"><i class="far fa-times-circle" onclick="preguntarSiNo(<?php echo $ver[0] ?>)"></i></button>
+                </td>
+              <?php
+              } else if ($rolUsuario == 'Admin') {
+              ?>
+                <td>
+                  <button class="btn btn-warning" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform('<?php echo $datos ?>')">
+                    <i class="far fa-edit"></i>
+                  </button>
+                </td>
+              <?php
+              }
+              ?>
             </tr>
           <?php
           }
@@ -127,7 +188,18 @@ if($rolUsuario == 'SuperAdmin'){
   <!--Tabla Hombres -->
   <div style="display:none;" id="tablaHombre" class="row p-4">
     <div class="col-sm-12">
-    <br>
+      <caption>
+        <?php
+        if ($rolUsuario != 'Usuario') {
+        ?>
+          <button style="margin-bottom:15px;" class="btn btn-primary" data-toggle="modal" data-target="#modalRegistro">
+            Agregar nuevo &nbsp;
+            <i class="fas fa-plus-square"></i>
+          </button>
+        <?php
+        }
+        ?>
+      </caption>
       <h2 style="float:right;color:black;margin-right:600px;margin-top:20px;">Hombres</h2>
       <table style="width:100%" id="tablaHombres" class="table table-striped table-bordered  mt-2 table-sm">
         <thead>
@@ -138,6 +210,18 @@ if($rolUsuario == 'SuperAdmin'){
           <td style="background:#42552b;color:white;">Cuenca</td>
           <td style="background:#42552b;color:white;">Guadalajara</td>
           <td style="background:#42552b;color:white;">Toledo</td>
+          <?php
+          if ($rolUsuario == 'SuperAdmin') {
+          ?>
+            <td style="background:#42552b;color:white;">Editar</td>
+            <td style="background:#42552b;color:white;">Eliminar</td>
+          <?php
+          } else if ($rolUsuario == 'Admin') {
+          ?>
+            <td style="background:#42552b;color:white;">Editar</td>
+          <?php
+          }
+          ?>
         </thead>
         <tbody>
           <?php
@@ -155,6 +239,28 @@ if($rolUsuario == 'SuperAdmin'){
               <td><?php echo $ver[5] ?></td>
               <td><?php echo $ver[6] ?></td>
               <td><?php echo $ver[7] ?></td>
+              <?php
+              if ($rolUsuario == 'SuperAdmin') {
+              ?>
+                <td>
+                  <button class="btn btn-warning" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform('<?php echo $datos ?>')">
+                    <i class="far fa-edit"></i>
+                  </button>
+                </td>
+                <td>
+                  <button class="btn btn-danger"><i class="far fa-times-circle" onclick="preguntarSiNo(<?php echo $ver[0] ?>)"></i></button>
+                </td>
+              <?php
+              } else if ($rolUsuario == 'Admin') {
+              ?>
+                <td>
+                  <button class="btn btn-warning" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform('<?php echo $datos ?>')">
+                    <i class="far fa-edit"></i>
+                  </button>
+                </td>
+              <?php
+              }
+              ?>
             </tr>
           <?php
           }
@@ -167,9 +273,20 @@ if($rolUsuario == 'SuperAdmin'){
   <!--Tabla Mujeres -->
   <div style="display:none;" id="tablaMujeres" class="row p-4">
     <div class="col-sm-12">
-    <br>
+      <caption>
+        <?php
+        if ($rolUsuario != 'Usuario') {
+        ?>
+          <button style="margin-bottom:15px;" class="btn btn-primary" data-toggle="modal" data-target="#modalRegistro">
+            Agregar nuevo &nbsp;
+            <i class="fas fa-plus-square"></i>
+          </button>
+        <?php
+        }
+        ?>
+      </caption>
       <h2 style="float:right;color:black;margin-right:620px;margin-top:20px;">Mujeres</h2>
-      <table  style="width:100%" id="tablaMujer" class="table table-striped table-bordered  mt-2 table-sm">
+      <table style="width:100%" id="tablaMujer" class="table table-striped table-bordered  mt-2 table-sm">
         <thead>
           <td style="background:#42552b;color:white;">Edades</td>
           <td style="background:#42552b;color:white;">Castilla La Mancha</td>
@@ -178,6 +295,18 @@ if($rolUsuario == 'SuperAdmin'){
           <td style="background:#42552b;color:white;">Cuenca</td>
           <td style="background:#42552b;color:white;">Guadalajara</td>
           <td style="background:#42552b;color:white;">Toledo</td>
+          <?php
+          if ($rolUsuario == 'SuperAdmin') {
+          ?>
+            <td style="background:#42552b;color:white;">Editar</td>
+            <td style="background:#42552b;color:white;">Eliminar</td>
+          <?php
+          } else if ($rolUsuario == 'Admin') {
+          ?>
+            <td style="background:#42552b;color:white;">Editar</td>
+          <?php
+          }
+          ?>
         </thead>
         <tbody>
           <?php
@@ -195,6 +324,28 @@ if($rolUsuario == 'SuperAdmin'){
               <td><?php echo $ver[5] ?></td>
               <td><?php echo $ver[6] ?></td>
               <td><?php echo $ver[7] ?></td>
+              <?php
+              if ($rolUsuario == 'SuperAdmin') {
+              ?>
+                <td>
+                  <button class="btn btn-warning" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform('<?php echo $datos ?>')">
+                    <i class="far fa-edit"></i>
+                  </button>
+                </td>
+                <td>
+                  <button class="btn btn-danger"><i class="far fa-times-circle" onclick="preguntarSiNo(<?php echo $ver[0] ?>)"></i></button>
+                </td>
+              <?php
+              } else if ($rolUsuario == 'Admin') {
+              ?>
+                <td>
+                  <button class="btn btn-warning" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform('<?php echo $datos ?>')">
+                    <i class="far fa-edit"></i>
+                  </button>
+                </td>
+              <?php
+              }
+              ?>
             </tr>
           <?php
           }
@@ -224,6 +375,85 @@ if($rolUsuario == 'SuperAdmin'){
     }
   </script>
 
+  <!--Modal para registros nuevos -->
+  <div class="modal fade" id="modalRegistro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="exampleModalLabel">Agrega nuevos datos</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table>
+            <thead>
+              <td style="margin:15px;text-align:center;"><label for="">Edades</label></td>
+              <td style="margin:15px;text-align:center;"><label for="">Castilla La Mancha</label></td>
+              <td style="margin:15px;text-align:center;"><label for="">Albacete</label></td>
+              <td style="padding:5px;text-align:center;"><label for="">Ciudad Real</label></td>
+              <td style="padding:5px;text-align:center;"><label for="">Cuenca</label></td>
+              <td style="padding:5px;text-align:center;"><label for="">Guadalajara</label></td>
+              <td style="padding:5px;text-align:center;"><label for="">Toledo</label></td>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="padding:5px;"><input type="number" name="" id="edadesA" class="form-control input-sm"></td>
+                <td style="padding:5px;"><input type="number" name="" id="castillaA" class="form-control input-sm"> </td>
+                <td style="padding:5px;"><input type="number" name="" id="albaceteA" class="form-control input-sm"> </td>
+                <td style="padding:5px;"><input type="number" name="" id="ciudadrealA" class="form-control input-sm"></td>
+                <td style="padding:5px;"><input type="number" name="" id="cuencaA" class="form-control input-sm"> </td>
+                <td style="padding:5px;"><input type="number" name="" id="guadalajaraA" class="form-control input-sm"> </td>
+                <td style="padding:5px;"><input type="number" name="" id="toledoA" class="form-control input-sm"></td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="guardarnuevo">
+            Agregar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Modal para editar registros -->
+  <div class="modal fade" id="modalEdicion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Actualizar Datos</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="text" hidden="" id="idpersona" name="">
+          <label for="">Edades</label>
+          <input type="text" name="" id="edadesu" class="form-control input-sm">
+          <label for="">Castilla La Mancha</label>
+          <input type="number" name="" id="castillau" class="form-control input-sm">
+          <label for="">Albacete</label>
+          <input type="number" name="" id="albaceteu" class="form-control input-sm">
+          <label for="">Ciudad Real</label>
+          <input type="number" name="" id="ciudadrealu" class="form-control input-sm">
+          <label for="">Cuenca</label>
+          <input type="number" name="" id="cuencau" class="form-control input-sm">
+          <label for="">Guadalajara</label>
+          <input type="number" name="" id="guadalajarau" class="form-control input-sm">
+          <label for="">Toledo</label>
+          <input type="number" name="" id="toledou" class="form-control input-sm">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" id="actualizadatos" data-dismiss="modal">
+            Actualizar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="js/rellax.min.js"></script>
   <script src="js/index.js"></script>
@@ -248,8 +478,8 @@ if($rolUsuario == 'SuperAdmin'){
       actualizaDatos();
     });
 
-   
-     $('#tablax').DataTable({
+
+    $('#tablax').DataTable({
       lengthMenu: [
         [5, 10, 25, 50, -1],
         [5, 10, 25, 50, 'All']

@@ -1,24 +1,3 @@
-function motrarAmbosSexos() {
-    alert("AMBOS");
-    document.getElementByName('ambosSexos').style.display = "block";
-    document.getElementByName('tablaHombre').style.display = "none";
-    document.getElementByName('tablaMujeres').style.display = "none";
-}
-
-function mostrarHombres() {
-    document.getElementByName('tablaHombre').style.display = "block";
-    document.getElementByName('ambosSexos').style.display = "none";
-    document.getElementByName('tablaMujeres').style.display = "none";
-}
-
-function mostrarMujeres() {
-    document.getElementByName('ambosSexos').style.display = "block";
-    document.getElementByName('tablaHombre').style.display = "none";
-    document.getElementByName('tablaMujeres').style.display = "none";
-}
-
-
-
 function agregardatos(edades, castilla, albacete, ciudadreal, cuenca, guadalajara, toledo) {
 
     cadena = "edades=" + edades +

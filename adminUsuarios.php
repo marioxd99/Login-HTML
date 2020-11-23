@@ -1,17 +1,11 @@
 <?php
 session_start();
-$usuario =$_SESSION['usuario']['nombre'];
-$idUsuario=$_SESSION['usuario']['id'];
-$rolUsuario=$_SESSION['usuario']['rol'];
+$usuario = $_SESSION['usuario']['nombre'];
+$idUsuario = $_SESSION['usuario']['id'];
+$rolUsuario = $_SESSION['usuario']['rol'];
 if ($usuario == null || $usuario == '') {
   header("location: index.php");
   die();
-}
-if($rolUsuario == 'Admin'){
-  header("location: adminAdmin.php");
-}
-if($rolUsuario == 'Usuario'){
-  header("location: adminUsuario.php");
 }
 ?>
 
@@ -24,7 +18,7 @@ if($rolUsuario == 'Usuario'){
   <title>Pagina Principal</title>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
   <link rel="stylesheet" href="css/adminUsuarios.css">
-  <link rel="icon" href="https://cutt.ly/UgKY2Lh">
+  <link rel="icon" href="img/Escudo.png">
   <link rel="stylesheet" href="css/bootstrap.min.css">
 
   <link rel="stylesheet" type="text/css" href="alertifyjs/css/alertify.css">
@@ -42,7 +36,7 @@ if($rolUsuario == 'Usuario'){
   <header class="enca">
     <div class="wrapper">
       <div class="logo">
-        <a style="color: white;" href="homeSuperAdmin.php"> Castilla La Mancha</a>
+        <a style="color: white;" href="home.php"> Castilla La Mancha</a>
       </div>
     </div>
     <nav>
@@ -91,50 +85,84 @@ if($rolUsuario == 'Usuario'){
   $conex = mysqli_connect("localhost", "root", "", "registro");
   ?>
 
- <h1 id="tituloDatos" >Gestión de Usuarios</h1>
+  <h1 id="tituloDatos">Gestión de Usuarios</h1>
   <!--Tabla Principal -->
   <div class="row p-4">
     <div class="col-sm-12">
       <h1 style="text-align:center;margin-top:90px;margin-bottom:40px;">Gestión de Usuarios</h1>
       <caption>
-        <button style="margin-bottom:15px;" class="btn btn-primary" data-toggle="modal" data-target="#modalRegistro">
-          Agregar nuevo &nbsp;
-          <i class="fas fa-plus-square"></i>
-        </button>
+        <?php
+        if ($rolUsuario == 'SuperAdmin') {
+        ?>
+          <button style="margin-bottom:15px;" class="btn btn-primary" data-toggle="modal" data-target="#modalRegistro">
+            Agregar nuevo &nbsp;
+            <i class="fas fa-plus-square"></i>
+          </button>
+        <?php
+        }
+        ?>
       </caption>
-      <table id="tablax" class="table table-striped table-hover table-condensed table-bordered  mt-2 ">
-        <thead>
-          <td style="background:#42552b;color:white;">Nombre</td>
-          <td style="background:#42552b;color:white;">Email</td>
-          <td style="background:#42552b;color:white;">Rol</td>
-          <td style="background:#42552b;color:white;">Editar</td>
-          <td style="background:#42552b;color:white;">Eliminar</td>
-        </thead>
-        <tbody>
+      <?php
+      if ($rolUsuario == 'Usuario') {
+      ?>
+        <table id="tabla" class="table table-striped table-hover table-condensed table-bordered  mt-2 ">
+        <?php
+      } else {
+        ?>
+          <table id="tablax" class="table table-striped table-hover table-condensed table-bordered  mt-2 ">
           <?php
-          $sql = "SELECT id,nombre,email,rol FROM datosusuario";
-          $result = mysqli_query($conex, $sql);
-          while ($ver = mysqli_fetch_row($result)) {
-            $datos = $ver[0] . "||" . $ver[1] . "||" . $ver[2] . "||" . $ver[3];
+        }
           ?>
-            <tr>
-              <td><?php echo $ver[1] ?></td>
-              <td><?php echo $ver[2] ?></td>
-              <td><?php echo $ver[3] ?></td>
-              <td>
-                <button class="btn btn-warning" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform('<?php echo $datos ?>')">
-                  <i class="far fa-edit"></i>
-                </button>
-              </td>
-              <td>
-                <button class="btn btn-danger"><i class="far fa-times-circle" onclick="preguntarSiNo(<?php echo $ver[0] ?>)"></i></button>
-              </td>
-            </tr>
-          <?php
-          }
-          ?>
-        </tbody>
-      </table>
+          <thead>
+            <td style="background:#42552b;color:white;">Nombre</td>
+            <td style="background:#42552b;color:white;">Email</td>
+            <td style="background:#42552b;color:white;">Rol</td>
+            <td style="background:#42552b;color:white;">Editar</td>
+            <?php
+            if ($rolUsuario == 'SuperAdmin') {
+            ?>
+              <td style="background:#42552b;color:white;">Eliminar</td>
+            <?php
+            }
+            ?>
+          </thead>
+          <tbody>
+            <?php
+            if ($rolUsuario == 'SuperAdmin') {
+              $sql = "SELECT id,nombre,email,rol FROM datosusuario";
+            } elseif ($rolUsuario == 'Admin') {
+              $sql = "SELECT id,nombre,email,rol FROM datosusuario WHERE rol='Usuario' or id='$idUsuario'";
+            } else {
+              $sql = "SELECT id,nombre,email,rol FROM datosusuario WHERE id='$idUsuario'";
+            }
+            $result = mysqli_query($conex, $sql);
+            while ($ver = mysqli_fetch_row($result)) {
+              $datos = $ver[0] . "||" . $ver[1] . "||" . $ver[2] . "||" . $ver[3];
+            ?>
+              <tr>
+                <td><?php echo $ver[1] ?></td>
+                <td><?php echo $ver[2] ?></td>
+                <td><?php echo $ver[3] ?></td>
+                <td>
+                  <button class="btn btn-warning" data-toggle="modal" data-target="#modalEdicion" onclick="agregaform('<?php echo $datos ?>')">
+                    <i class="far fa-edit"></i>
+                  </button>
+                </td>
+                <?php
+                if ($rolUsuario == 'SuperAdmin') {
+                ?>
+                  <td>
+                    <button class="btn btn-danger"><i class="far fa-times-circle" onclick="preguntarSiNo(<?php echo $ver[0] ?>)"></i></button>
+                  </td>
+                <?php
+                }
+                ?>
+              </tr>
+            <?php
+            }
+            ?>
+          </tbody>
+          </table>
     </div>
   </div>
 
@@ -192,7 +220,7 @@ if($rolUsuario == 'Usuario'){
     </div>
   </div>
 
-  <script src="funcionesUsuario.js"></script>
+  <script src="js/funcionesUsuario.js"></script>
 </body>
 
 </html>
@@ -223,18 +251,7 @@ if($rolUsuario == 'Usuario'){
         [5, 10, 25, 50, 'All']
       ],
       language: {
-        "sProcessing": "Procesando...",
-        "sLengthMenu": "Mostrar _MENU_ registros",
-        "sZeroRecords": "No se encontraron resultados",
-        "sEmptyTable": "Ningún dato disponible en esta tabla",
-        "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-        "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-        "sInfoPostFix": "",
         "sSearch": "Buscar:",
-        "sUrl": "",
-        "sInfoThousands": ",",
-        "sLoadingRecords": "Cargando...",
         "oPaginate": {
           "sFirst": "Primero",
           "sLast": "Último",

@@ -14,11 +14,11 @@ jQuery(document).on('submit', '#formLog', function(event) {
             console.log(respuesta);
             if (!respuesta.error) {
                 if (respuesta.rol == 'SuperAdmin') {
-                    location.href = 'homeSuperAdmin.php';
+                    location.href = 'home.php';
                 } else if (respuesta.rol == 'Admin') {
-                    location.href = 'homeAdmin.php';
+                    location.href = 'home.php';
                 } else if (respuesta.rol == 'Usuario') {
-                    location.href = 'homeUsuario.php';
+                    location.href = 'home.php';
                 }
             } else {
                 $('.error').slideDown('slow');
