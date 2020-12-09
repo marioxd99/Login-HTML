@@ -11,7 +11,6 @@ if ($usuario == null || $usuario == '') {
 
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -82,7 +81,7 @@ if ($usuario == null || $usuario == '') {
   </div>
 
   <?php
-  $conex = mysqli_connect("localhost", "root", "", "registro");
+  include('logica/con_db.php');
   ?>
 
   <h1 id="tituloDatos">Gestión de Usuarios</h1>
@@ -96,7 +95,7 @@ if ($usuario == null || $usuario == '') {
         ?>
           <button style="margin-bottom:15px;" class="btn btn-primary" data-toggle="modal" data-target="#modalRegistro">
             Agregar nuevo &nbsp;
-            <i class="fas fa-plus-square"></i>
+            <em class="fas fa-plus-square"></em>
           </button>
         <?php
         }

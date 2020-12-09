@@ -35,3 +35,35 @@ jQuery(document).on('submit', '#formLog', function(event) {
 
         });
 });
+
+jQuery(document).on('submit', '#formReg', function(event) {
+    event.preventDefault();
+
+    jQuery.ajax({
+            url: 'logica/registrar.php',
+            type: 'POST',
+            dataType: 'json',
+            data: $(this).serialize(),
+        })
+        .done(function(respuesta) {
+            console.log(respuesta);
+            if (!respuesta.error) {
+                $("#formReg")[0].reset();
+                $('.exito').slideDown('slow');
+                setTimeout(function() {
+                    $('.exito').slideUp('slow');
+                }, 3500);
+            } else {
+                $('.error').slideDown('slow');
+                setTimeout(function() {
+                    $('.error').slideUp('slow');
+                }, 3500);
+            }
+        })
+        .fail(function(resp) {
+
+        })
+        .always(function() {
+
+        });
+});

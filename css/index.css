@@ -40,6 +40,16 @@ body {
     font-family: Roboto;
 }
 
+.exito {
+    text-align: center;
+    margin-top: 20px;
+    color: green;
+    display: none;
+    font-size: 25px;
+    font-weight: 100;
+    font-family: Roboto;
+}
+
 .enca {
     background: rgba(123, 98, 0, 0.5);
     overflow: hidden;

@@ -2,33 +2,21 @@
 session_start();
 $usuario = $_SESSION['usuario']['nombre'];
 $rolUsuario = $_SESSION['usuario']['rol'];
+$_SESSION['token'] = bin2hex(random_bytes(24));
 if ($usuario == null || $usuario == '') {
   header("location: index.php");
   die();
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8">
   <title>Pagina Principal</title>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-  <link rel="stylesheet" href="css/paginaPrincipal.css">
+  <link rel="stylesheet" href="css/home.css">
   <link rel="icon" href="img/Escudo.png">
-  <style id="antiClickjack">
-    body {
-      display: none !important;
-    }
-  </style>
-  <script type="text/javascript">
-    if (self === top) {
-      var antiClickjack = document.getElementById("antiClickjack");
-      antiClickjack.parentNode.removeChild(antiClickjack);
-    } else {
-      top.location = self.location;
-    }
-  </script>
 
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="alertifyjs/css/alertify.css">
@@ -93,7 +81,7 @@ if ($usuario == null || $usuario == '') {
   </script>
 
   <?php
-  $conex = mysqli_connect("localhost", "root", "", "registro");
+  include('logica/con_db.php');
   ?>
 
   <button type="button" class="btn btn-primary" style="margin-left:560px;text-align:center;height:60px;" onclick="mostrarAmbosSexos();">Ambos Sexos &nbsp;<i class="fas fa-venus-mars"></i></button>
@@ -109,7 +97,7 @@ if ($usuario == null || $usuario == '') {
         ?>
           <button style="margin-bottom:15px;" class="btn btn-primary" data-toggle="modal" data-target="#modalRegistro">
             Agregar nuevo &nbsp;
-            <i class="fas fa-plus-square"></i>
+            <em class="fas fa-plus-square"></em>
           </button>
         <?php
         }
@@ -458,7 +446,6 @@ if ($usuario == null || $usuario == '') {
   <script src="js/rellax.min.js"></script>
   <script src="js/index.js"></script>
 </body>
-
 </html>
 
 <script type="text/javascript">
